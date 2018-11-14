@@ -3,10 +3,10 @@
 This library is another approach to implement a finite state machine in C. 
 
 Implementation should be:
- - easy
- - well manageable
- - well readable
- - standardized
+ * easy
+ * well manageable
+ * well readable
+ * standardized
 
 ## Getting Started
 
