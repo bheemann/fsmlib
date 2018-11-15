@@ -11,7 +11,7 @@ Implementation should be:
 
 ## Getting Started
 
-Include the Header:
+Include the header:
 ```
 #include "fsmlib.h"
 ```
@@ -35,7 +35,7 @@ FSM_EVENTS(ledHandler,
 )
 ```
 
-Define callback-Functions:
+Define callback functions:
 ```
 static FSM_STATE_TYPE(ledHandler) led_turn_off(void* par, void* ret);
 static FSM_STATE_TYPE(ledHandler) led_turn_on(void* par, void* ret);
@@ -43,7 +43,7 @@ static FSM_STATE_TYPE(ledHandler) led_toggle_mode_set(void* par, void* ret);
 static FSM_STATE_TYPE(ledHandler) led_toggle(void* par, void* ret);
 ```
 
-Implement the FSM_TABLE as a triplet of {STATE, EVENT , FUNCTION}
+Implement the FSM_TABLE as a triplet of {STATE, EVENT, FUNCTION}
 ```
 FSM_TABLE(ledHandler,
     {sLED_IS_ON , eLED_TURN_OFF,      led_turn_off        },
@@ -51,7 +51,7 @@ FSM_TABLE(ledHandler,
     {sLED_IS_ON , eLED_SET_TOGGLE,    led_toggle_mode_set },
     {sLED_IS_OFF, eLED_SET_TOGGLE,    led_toggle_mode_set },
     {sLED_BLINK,  eLED_TURN_ON ,      led_turn_on         },
-    {sLED_BLINK,  eLED_TURN_OFF,      led_turn_on         },
+    {sLED_BLINK,  eLED_TURN_OFF,      led_turn_off         },
     {sLED_BLINK,  eLED_TIMER_TICK,    led_toggle          }
 )
 ```
@@ -107,4 +107,4 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 
 ## Acknowledgment
 
-* Thanks to Alexander Kann and Lars Heinrichs for their valuable support. 
+Thanks to Alexander Kann and Lars Heinrichs for their valuable support. 
