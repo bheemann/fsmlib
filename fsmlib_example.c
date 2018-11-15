@@ -45,7 +45,7 @@ FSM_TABLE(ledHandler,
     {LED_IS_ON , LED_SET_TOGGLE,    led_toggle_mode_set },
     {LED_IS_OFF, LED_SET_TOGGLE,    led_toggle_mode_set },
     {LED_BLINK,  LED_TURN_ON ,      led_turn_on         },
-    {LED_BLINK,  LED_TURN_OFF,      led_turn_on         },
+    {LED_BLINK,  LED_TURN_OFF,      led_turn_off        },
     {LED_BLINK,  LED_TIMER_TICK,    led_toggle          }
 )
 
