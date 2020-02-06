@@ -45,13 +45,13 @@ name##_events_t
 /*******************************************************************************
  *    STATE MACHINE RETURN VALUES
  ******************************************************************************/
-enum {
+typedef enum fsmReturn_t{
     FSM_INVALID_STATE   = -1,
     FSM_INVALID_EVENT   = -2,
     FSM_NO_TRANSITION   = -3,
     FSM_NULL_EXCEPTION  = -4,
     FSM_OK              = 0    
-};
+}fsmReturn_t;
 
 /*******************************************************************************
  *    PUBLIC TYPES
@@ -75,7 +75,7 @@ typedef enum name##_events_t{               \
     name##_EVENT_COUNT                      \
 } name##_events_t;                          \
                                             \
-int8_t name##_fsm_step(name##_events_t event, void* param, void* ret);
+fsmReturn_t name##_fsm_step(int event, void* param, void* ret);
 
 /*******************************************************************************
  *    STATE MACHINE CORE LOGIC
@@ -84,11 +84,11 @@ int8_t name##_fsm_step(name##_events_t event, void* param, void* ret);
 name##_fsm_t name##_fsm[] = {                               \
     __VA_ARGS__                                             \
 };                                                          \
-                                                            \
-static name##_states_t        state = 0;                    \
+static int       state = 0;     							\
+/*static name##_states_t       state = (name##_states_t)0;*/\
 static name##_fsm_t         * name##_transition;            \
                                                             \
-int8_t name##_fsm_step(name##_events_t event, void* param, void* ret){ \
+fsmReturn_t name##_fsm_step(int event, void* param, void* ret){ \
     if (event >= name##_EVENT_COUNT)                        \
         return FSM_INVALID_EVENT;                           \
                                                             \
