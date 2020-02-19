@@ -25,6 +25,10 @@
 #ifndef FSM_LIB_HEADER
 #define FSM_LIB_HEADER
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 /*******************************************************************************
  *    INCLUDED FILES
  ******************************************************************************/
@@ -112,4 +116,7 @@ fsmReturn_t name##_fsm_step(int event, void* param, void* ret){ \
     return FSM_NO_TRANSITION;                               \
 }
 
+#ifdef __cplusplus
+}
+#endif
 #endif // FSM_LIB_HEADER
