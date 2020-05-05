@@ -40,11 +40,24 @@ extern "C"
 #define fsm_run(name, event, param, ret) \
 name##_fsm_step(event, param, ret)
 
+#define fsm_state(name) \
+name##_fsm_get_state()
+
+#define fsm_set_state(name, new_state) \
+name##_fsm_set_state(new_state)
+
+#define fsm_reset(name) \
+name##_fsm_reset()
+
 #define FSM_STATE_TYPE(name) \
 name##_states_t
 
 #define FSM_EVENT_TYPE(name) \
 name##_events_t
+
+#ifndef NULL
+#define NULL ((void*) 0)
+#endif
 
 /*******************************************************************************
  *    STATE MACHINE RETURN VALUES
@@ -70,7 +83,10 @@ typedef struct name##_fsm_t {               \
     uint8_t state;                          \
     uint8_t event;                          \
     name##_states_t (*func)(void*, void*);  \
-} name##_fsm_t;
+} name##_fsm_t;                             \
+name##_states_t name##_fsm_get_state();     \
+void name##_fsm_reset();
+
 
 
 #define FSM_EVENTS(name, ...)               \
@@ -80,6 +96,8 @@ typedef enum name##_events_t{               \
 } name##_events_t;                          \
                                             \
 fsm_return_t name##_fsm_step(name##_events_t event, void* param, void* ret);
+
+
 
 /*******************************************************************************
  *    STATE MACHINE CORE LOGIC
@@ -91,6 +109,22 @@ name##_fsm_t name##_fsm[] = {                               \
                                                             \
 static name##_states_t        name##_state = (name##_states_t)0;             \
 static name##_fsm_t         * name##_transition;            \
+                                                            \
+name##_states_t name##_fsm_get_state(){                     \
+    return name##_state;                                    \
+}                                                           \
+                                                            \
+int8_t name##_fsm_set_state(name##_states_t new_state){     \
+    if ((new_state >= 0) & (new_state < name##_STATE_COUNT)) { \
+        name##_state = new_state;                           \
+        return FSM_OK;                                      \
+    }                                                       \
+    return FSM_INVALID_STATE;                               \
+}                                                           \
+                                                            \
+void name##_fsm_reset(){                                    \
+    name##_state = 0;                                       \
+}                                                           \
                                                             \
 fsm_return_t name##_fsm_step(name##_events_t event, void* param, void* ret){ \
     if (event >= name##_EVENT_COUNT)                        \
