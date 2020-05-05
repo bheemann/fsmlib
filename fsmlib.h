@@ -85,14 +85,14 @@ name##_fsm_t name##_fsm[] = {                               \
     __VA_ARGS__                                             \
 };                                                          \
                                                             \
-static name##_states_t        state = 0;                    \
+static name##_states_t        name##_state = 0;             \
 static name##_fsm_t         * name##_transition;            \
                                                             \
 int8_t name##_fsm_step(name##_events_t event, void* param, void* ret){ \
     if (event >= name##_EVENT_COUNT)                        \
         return FSM_INVALID_EVENT;                           \
                                                             \
-    if (state >= name##_STATE_COUNT )                       \
+    if (name##_state >= name##_STATE_COUNT )                \
         return FSM_INVALID_STATE;                           \
                                                             \
     name##_transition = name##_fsm;                         \
@@ -100,12 +100,12 @@ int8_t name##_fsm_step(name##_events_t event, void* param, void* ret){ \
         i < sizeof(name##_fsm) / sizeof(name##_fsm_t);      \
         i++, name##_transition++)                           \
         {                                                   \
-        if (name##_transition->state == state &&            \
+        if (name##_transition->state == name##_state &&     \
             name##_transition->event == event)              \
         {                                                   \
             if (name##_transition->func == NULL)            \
                 return FSM_NULL_EXCEPTION;                  \
-            state = name##_transition->func(param, ret);    \
+            name##_state = name##_transition->func(param, ret);\
             return FSM_OK;                                  \
         }                                                   \
     }                                                       \
