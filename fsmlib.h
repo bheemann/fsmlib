@@ -89,7 +89,7 @@ name##_fsm_t name##_fsm[] = {                               \
     __VA_ARGS__                                             \
 };                                                          \
                                                             \
-static name##_states_t        name##_state = 0;             \
+static name##_states_t        name##_state = (name##_states_t)0;             \
 static name##_fsm_t         * name##_transition;            \
                                                             \
 fsmReturn_t name##_fsm_step(name##_events_t event, void* param, void* ret){ \
