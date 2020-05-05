@@ -59,11 +59,11 @@ FSM_TABLE(ledHandler,
 
 int led_on = 1;
 
-int fsm_get_event() {
+FSM_EVENT_TYPE(ledHandler) fsm_get_event() {
     int event = getchar();    
     int c;
     while (c = getchar() != '\n' && c!= EOF){}    
-    return (event-'0');
+    return (FSM_EVENT_TYPE(ledHandler))(event-'0');
 }
 
 void print_instructions(){
@@ -108,7 +108,7 @@ void print_fsm_error(int fsm_error_code){
  *       
  * ******************************************************************/
 
-int main(void){
+int peter(void){
     print_instructions();
     while(1){
         print_fsm_error(  
