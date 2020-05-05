@@ -55,7 +55,7 @@ typedef enum fsmReturn_t{
     FSM_NO_TRANSITION   = -3,
     FSM_NULL_EXCEPTION  = -4,
     FSM_OK              = 0    
-}fsmReturn_t;
+}fsm_return_t;
 
 /*******************************************************************************
  *    PUBLIC TYPES
