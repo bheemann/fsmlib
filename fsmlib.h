@@ -79,7 +79,7 @@ typedef enum name##_events_t{               \
     name##_EVENT_COUNT                      \
 } name##_events_t;                          \
                                             \
-fsmReturn_t name##_fsm_step(int event, void* param, void* ret);
+fsmReturn_t name##_fsm_step(name##_events_t event, void* param, void* ret);
 
 /*******************************************************************************
  *    STATE MACHINE CORE LOGIC
@@ -92,7 +92,7 @@ static int       state = 0;     							\
 /*static name##_states_t       state = (name##_states_t)0;*/\
 static name##_fsm_t         * name##_transition;            \
                                                             \
-fsmReturn_t name##_fsm_step(int event, void* param, void* ret){ \
+fsmReturn_t name##_fsm_step(name##_events_t event, void* param, void* ret){ \
     if (event >= name##_EVENT_COUNT)                        \
         return FSM_INVALID_EVENT;                           \
                                                             \
