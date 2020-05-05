@@ -79,7 +79,7 @@ typedef enum name##_events_t{               \
     name##_EVENT_COUNT                      \
 } name##_events_t;                          \
                                             \
-fsmReturn_t name##_fsm_step(int event, void* param, void* ret);
+fsmReturn_t name##_fsm_step(name##_events_t event, void* param, void* ret);
 
 /*******************************************************************************
  *    STATE MACHINE CORE LOGIC
