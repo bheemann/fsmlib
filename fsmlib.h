@@ -115,7 +115,6 @@ static name##_fsm_t         * name##_transition;            \
 name##_states_t name##_fsm_get_state(){                     \
     return name##_state;                                    \
 }                                                           \
-#ifdef TEST                                                            \
 fsm_return_t name##_fsm_set_state(name##_states_t new_state){     \
     if ((new_state >= 0) & (new_state < name##_STATE_COUNT)) { \
         name##_state = new_state;                           \
@@ -127,7 +126,6 @@ fsm_return_t name##_fsm_set_state(name##_states_t new_state){     \
 void name##_fsm_reset(){                                    \
     name##_state = (name##_states_t)0;                      \
 }                                                           \
-#endif  
                                                             \
 fsm_return_t name##_fsm_step(name##_events_t event, void* param, void* ret){ \
     if (event >= name##_EVENT_COUNT)                        \
