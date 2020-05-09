@@ -108,7 +108,7 @@ void print_fsm_error(int fsm_error_code){
  *       
  * ******************************************************************/
 
-int peter(void){
+int main(void){
     print_instructions();
     while(1){
         print_fsm_error(  
